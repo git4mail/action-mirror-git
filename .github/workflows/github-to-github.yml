@@ -20,7 +20,7 @@ jobs:
       - name: List repos
         id: list_repos
         run: |
-          repo_list=$(gh repo list -L 1000 --json name -t '{{range $i, $n := .}}{{if (gt $i 0)}},{{end}}{{$n.name}}{{end}}')
+          repo_list=$(gh repo list yin2na -L 1000 --json name -t '{{range $i, $n := .}}{{if (gt $i 0)}},{{end}}{{$n.name}}{{end}}')
           echo "::set-output name=repo_list::${repo_list}"
 
       - name: GitHub to GitHub
