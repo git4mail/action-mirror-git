@@ -2,8 +2,8 @@ name: GitHub to GitHub
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 2 * * 3"
+#   schedule:
+#     - cron: "0 2 * * 3"
 
 jobs:
   mirror:
@@ -14,7 +14,7 @@ jobs:
       - name: Login Source GitHub
         run: |
           gh --version
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.SRC_GITHUB_TOKEN }}" | gh auth login --with-token
           gh auth status
 
       - name: List repos
@@ -28,11 +28,11 @@ jobs:
         with:
           source_protocol: https
           source_host: github.com
-          source_username: k8scat
-          source_token: ${{ secrets.GITHUB_TOKEN }}
+          source_username: yin2na
+          source_token: ${{ secrets.SRC_GITHUB_TOKEN }}
           dest_protocol: https
           dest_host: github.com
-          dest_username: k8scat-archived
+          dest_username: purepoorx
           dest_token: ${{ secrets.DEST_TOKEN_GITHUB }}
           dest_token_username: gitobor
           mirror_repos: ${{ steps.list_repos.outputs.repo_list }}
